@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "StaffList";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<StaffList.BussinessLayer.ModelClasses.StaffViewModel>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom cc_cursor">
+    <h1 class="h2">Personel Listesi</h1>
+</div>
+
+<div class="col-md-12">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Adı-Soyadı</th>
+                <th scope="col">Telefon</th>
+                <th scope="col">Departman</th>
+                <th scope="col">Yönetici</th>
+                <th scope="col">Doğum Tarihi</th>
+                <th scope="col">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var staf in Model)
+            {
+                <tr>
+                    <td>@staf.Name @staf.Surname</td>
+                    <td>
+                        <a style="text-decoration:none; " href="tel:@staf.Phone">@staf.Phone</a>
+                    </td>
+                    <td>
+                        @if (staf.DepartmanName != null)
+                        {
+                            @staf.DepartmanName
+                        }
+                    </td>
+                    <td>
+
+                        @if (staf.ManagerName!= null)
+                        {
+                            @staf.ManagerName
+                        }
+                    </td>
+                    <td>
+                        @staf.DateOfBirth
+                    </td>
+                    <td>
+                        <a href="/AdminPanel/Home/Staff/@staf.Id" class="btn btn-success">Detay</a>
+                        <a href="/AdminPanel/Home/StaffDelete/@staf.Id" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

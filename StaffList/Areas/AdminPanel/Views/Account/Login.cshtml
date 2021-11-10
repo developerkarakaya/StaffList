@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/Css/detail.css" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+        </div>
+        <!-- Login Form -->
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <h4>Personel Listesi Giriş Sayfası</h4>
+
+        </div>
+        <form action="/Account/LoginAdmin" method="post">
+            <input type="text" id="login"  class="fadeIn second" autocomplete="off" name="UserName" placeholder="Kullanıcı Adı">
+            <input type="password" id="password" class="fadeIn third" autocomplete="off" name="Password" placeholder="Şifre">
+            <input type="submit" class="fadeIn fourth" value="Giriş Yap">
+        </form>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["Message"]
+            </div>
+        }
+    </div>
+</div>

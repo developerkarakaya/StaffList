@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<StaffList.DataEntitiess.Department>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom cc_cursor">
+    <h1 class="h2">Departman İşlemleri</h1>
+
+</div>
+<div class="col-md-12" >
+    <div class="row" >
+        <div class="col-md-6">
+            <form method="post" action="/AdminPanel/Department/DepartmentAdd">
+                <input type="hidden" name="Id"   value="@TempData["depId"]" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Departman">Departman</label>
+                        <input type="text" class="form-control" id="Department1" name="Department1" value="@TempData["depName"]" placeholder="Departman" required>
+                    </div>
+                    <br />
+                    <div class="form-group col-md-6 ">
+                        <input type="submit" class="btn btn-success" style="float:right" value="Kaydet" />
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        <div class="col-md-6">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Departman</th>
+                        <th scope="col">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dep in Model)
+                    {
+                        <tr>
+                            <td>@dep.Department1</td>
+                            <td>
+                                <a href="/AdminPanel/Department/Index?Id=@dep.Id" class="btn btn-success">Düzenle</a>
+                                <a id="btn_delete" href="/AdminPanel/Department/DepartmentDelete/@dep.Id" class="btn btn-danger delete-dep">Sil</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+        </div>
+
+    </div>
+
+
+</div>
+
+

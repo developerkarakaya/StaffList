@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "StaffDetail";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+@model StaffList.BussinessLayer.ModelClasses.StaffViewModel
+@using StaffList.DataEntitiess
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<link rel="stylesheet" href="~/Css/detail.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<div class="container">
+    <div class="team-single">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                <div class="team-single-img" style="width:250px">
+                    <div class="bxslider">
+                        @foreach (var staffImage in ViewBag.ImageList)
+                        {
+                            <div><img src="@staffImage.ImageUrl"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-7">
+                <div class="team-single-text padding-50px-left sm-no-padding-left">
+                    <h4 class="font-size38 sm-font-size32 xs-font-size30">@Model.Name @Model.Surname</h4>
+                    <div class="contact-info-section margin-40px-tb">
+                        <ul class="list-style9 no-margin">
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-orange">Departman</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>
+                                           @Model.DepartmanName
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-yellow">Doğum Tarihi</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>@Model.DateOfBirth</p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-green">Yönetici</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>
+                                          @Model.ManagerName
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left xs-margin-four-left text-purple">Telefon</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>@Model.Phone</p>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <a class="btn btn-info" href="/Home/PublicUI" style="color:white">Listeye Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.bxslider').bxSlider({
+            mode: 'fade',
+            captions: true,
+            slideWidth: 600
+        });
+    });
+</script>

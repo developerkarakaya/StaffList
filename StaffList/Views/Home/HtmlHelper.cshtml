@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "HtmlHelper";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+<h2>Html Helper Kullanımı</h2>
+
+@{
+
+    Html.BeginForm("UrunEkle", "Home", FormMethod.Post, new { @style = "border-color:gray; border-width:2px; border-style:solid;" });
+    <br />
+    @Html.Label("KullaniciAd", "Kullanıcı Adı");
+    @Html.TextBox("BolumAd", "Bilgisayar", new { @class = "form-control" });
+    <br />
+    @Html.Label("Mesaj", "Mesajınız ");
+    <br />
+    @Html.TextArea("MesajYazin", "Mesaj Yazınız"
+    , 5, 50, new { @class = "form-control" });
+    <br />
+    @Html.Label("İlgiAlani", "İlgi Alanı Seçiniz ")
+    <br />
+    @Html.CheckBox("CevapA") @Html.Label("", "Spor")
+    @Html.CheckBox("CevapB") @Html.Label("", "Ekonomi")
+
+    <br />
+    @Html.Label("AskerlikDurum", "Askerlik Durumu Seçiniz : ")
+    <br />
+    @Html.RadioButton("AskerlikSecim", "Tecilli"); @Html.Label("", "Tecilli")
+    @Html.RadioButton("AskerlikSecim", "Muaf"); @Html.Label("", "Muaf")
+
+    <br />
+
+    @Html.Label("takim", "Takım Seçiniz");
+    @Html.DropDownList("Takim", new[] {
+        new SelectListItem{
+            Text="Barcelona",
+            Value="1"
+            },
+            new SelectListItem {
+                Text="Real Madrid"
+                ,
+                Value = "2",
+            }
+
+}, "Takım Seçin");
+    <br />
+
+
+    @Html.ListBox("Marka", new[] {
+new SelectListItem{
+Text="Barcelona",
+Value="1"
+},
+new SelectListItem {
+    Text="Real Madrid"
+    ,
+    Value = "2",
+}
+
+}, "Marka Seçin");
+    <br />
+    @Html.Password("Sifre");
+}
+@{
+    Html.EndForm();
+}
+
+<div id="apidata" >
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            method: "POST",
+            url: "https://eczaneleri.net/api/eczane-api?demo=1&type=json",
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.data.length; i++) {
+                            $('#apidata').append('<h2>' + data.data[i].CityName + ' ' + data.data[i].area[i].areaName + '</h2>');
+                        }
+            },
+            error: function () {
+                alert("hata");
+            }
+        });
+
+    });
+</script>
